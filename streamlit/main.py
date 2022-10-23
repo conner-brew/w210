@@ -1,20 +1,14 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
+from joblib import load
 import pickle
 
 #Loading up the Regression model we created
 
-model = pickle.load(open('streamlit/streamlit_testmodel.joblib', 'rb'))
+model = load('streamlit_testmodel.joblib') 
 #Caching the model for faster loading
-@st.cache
-
-
-# Define the prediction function
-def predict(AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT):
-    #Predicting the price of the carat
-    
-    return prediction
+#@st.cache
 
 st.title('Abuse Risk Sandbox')
 st.header('Lorum Ipsum:')
