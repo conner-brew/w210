@@ -41,9 +41,9 @@ if PLACEOUT == 'Yes':
 else:
     PLACEOUT = 1
 
-LATREMLOS = st.number_input("How many days since the child's last removal (if no prior removals, how many days since the child entered the system)?", 0, 7560, 30)
+LATREMLOS = st.slider("How many days since the child's last removal (if no prior removals, how many days since the child entered the system)?", 0, 7560, 1000)
 
-CTKFAMST = st.selectbox("What is the family structure of the caretaker family?", ['Married Couple','Unmarried Couple','Single Male','Single Male','Unknown'])	
+CTKFAMST = st.selectbox("What is the family structure of the caretaker family?", ['Married Couple','Unmarried Couple','Single Male','Single Female','Unknown'])	
 if CTKFAMST == 'Married Couple':
     CTKFAMST = 1
 elif CTKFAMST == 'Unmarried Couple':
@@ -77,7 +77,7 @@ elif CASEGOAL == 'No Goal Established':
 else:
     CASEGOAL = 0
 
-CHBEHPRB = st.select_slider("Has the child exhibited behavioral problems at home, in school, or elsewhere in the community? This includes running away.", ['Yes','No'])
+CHBEHPRB = st.selectbox("Has the child exhibited behavioral problems at home, in school, or elsewhere in the community? This includes running away.", ['Yes','No'])
 if CHBEHPRB == 'Yes':
     CHBEHPRB = 1
 else:
