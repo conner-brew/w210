@@ -4,7 +4,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from joblib import load
 
 #Loading up the Regression model we created
-model = GradientBoostingClassifier()
+#model = GradientBoostingClassifier()
 model = load('streamlit_testmodel.joblib') 
 
 #Caching the model for faster loading
