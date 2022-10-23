@@ -6,7 +6,7 @@ import pickle
 
 #Loading up the Regression model we created
 
-model = load('streamlit_testmodel.joblib') 
+model = load('streamlit/streamlit_testmodel.joblib') 
 #Caching the model for faster loading
 #@st.cache
 
