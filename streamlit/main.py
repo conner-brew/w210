@@ -13,7 +13,7 @@ model = pickle.load(open('streamlit/streamlit_testmodel.joblib', 'rb'))
 # Define the prediction function
 def predict(AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT):
     #Predicting the price of the carat
-    prediction = model.predict_proba(pd.DataFrame([[AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT]], columns=['AACHILD', 'AMIAKN', 'PLACEOUT', 'LATREMLOS', 'CTKFAMST', 'REPDATYR', 'CASEGOAL', 'WHITE', 'CHBEHPRB', 'DAPARENT']))
+    
     return prediction
 
 st.title('Abuse Risk Sandbox')
@@ -92,9 +92,12 @@ if DAPARENT == 'Yes':
 else:
     DAPARENT = 0
 
-if st.button('Predict Price'):
+data = pd.DataFrame([[AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT]],
+ columns=['AACHILD', 'AMIAKN', 'PLACEOUT', 'LATREMLOS', 'CTKFAMST', 'REPDATYR', 'CASEGOAL', 'WHITE', 'CHBEHPRB', 'DAPARENT'])
+
+if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
-        risk = predict(AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT)
+        risk = model.predict_proba(data)[0][1]
         risk += 0.3
     
     if risk > 0.66:
