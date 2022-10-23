@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
 from joblib import load
-import pickle
+
 
 #Loading up the Regression model we created
 
