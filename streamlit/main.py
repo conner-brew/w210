@@ -102,7 +102,7 @@ if st.button('Predict Price'):
         st.warning('This case has a HIGH risk of abuse.')
 
     elif risk > 0.33:
-        st.warning('This case has a MODERATE risk of abuse.')
+        st.info('This case has a MODERATE risk of abuse.')
 
     else:
-        st.warning('This case has a LOW risk of abuse.')
+        st.success('This case has a LOW risk of abuse.')
