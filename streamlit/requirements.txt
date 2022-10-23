@@ -2,3 +2,4 @@ streamlit
 pandas
 sklearn
 pickle
+joblib
