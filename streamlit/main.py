@@ -25,18 +25,21 @@ elif racethn == 'Mixed-Race':
     WHITE = 1
     WHITE = 0
     AMIAKN = 0
+else:
+    WHITE = 0
+    AMIAKN = 0
 
-AACHILD = st.select_slider('Is there any evidence that the child misuses alcohol?', ['Yes','No'])
+AACHILD = st.selectbox('Is there any evidence that the child misuses alcohol?', ['Yes','No'])
 if AACHILD == 'Yes':
     AACHILD = 1
 else:
     AACHILD = 0
 
-PLACEOUT = st.select_slider('Is the child placed in the state of VA?', ['Yes','No'])
+PLACEOUT = st.selectbox('Is the child placed in the state of VA?', ['Yes','No'])
 if PLACEOUT == 'Yes':
-    PLACEOUT = 1
-else:
     PLACEOUT = 0
+else:
+    PLACEOUT = 1
 
 LATREMLOS = st.number_input("How many days since the child's last removal (if no prior removals, how many days since the child entered the system)?", 0, 7560, 30)
 
@@ -80,7 +83,7 @@ if CHBEHPRB == 'Yes':
 else:
     CHBEHPRB = 0
 
-DAPARENT = st.select_slider("Is there evidence or history of drug abuse associated with the caretakers?", ['Yes','No'])
+DAPARENT = st.selectbox("Is there evidence or history of drug abuse associated with the caretakers?", ['Yes','No'])
 if DAPARENT == 'Yes':
     DAPARENT = 1
 else:
@@ -95,10 +98,10 @@ if st.button('Predict Risk'):
         risk += 0.3
     
     if risk > 0.66:
-        st.warning('This case has a HIGH risk of abuse.')
+        st.error('This case has a HIGH risk of abuse.')
 
     elif risk > 0.33:
-        st.info('This case has a MODERATE risk of abuse.')
+        st.warning('This case has a MODERATE risk of abuse.')
 
     else:
         st.success(f'This case has a LOW risk of abuse. {risk}')
