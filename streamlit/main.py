@@ -101,4 +101,4 @@ if st.button('Predict Risk'):
         st.info('This case has a MODERATE risk of abuse.')
 
     else:
-        st.success('This case has a LOW risk of abuse.')
+        st.success(f'This case has a LOW risk of abuse. {risk}')
