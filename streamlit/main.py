@@ -1,12 +1,11 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
-from joblib import load
+import pickle
 
 #Loading up the Regression model we created
-#model = GradientBoostingClassifier()
-model = load('streamlit_testmodel.joblib') 
 
+model = pickle.load(open('streamlit_testmodel.joblib', 'rb'))
 #Caching the model for faster loading
 @st.cache
 
