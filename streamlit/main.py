@@ -29,13 +29,13 @@ else:
     WHITE = 0
     AMIAKN = 0
 
-AACHILD = st.selectbox('Is there any evidence that the child misuses alcohol?', ['Yes','No'])
+AACHILD = st.radio('Is there any evidence that the child misuses alcohol?', ['Yes','No'])
 if AACHILD == 'Yes':
     AACHILD = 1
 else:
     AACHILD = 0
 
-PLACEOUT = st.selectbox('Is the child placed in the state of VA?', ['Yes','No'])
+PLACEOUT = st.radio('Is the child placed in the state of VA?', ['Yes','No'])
 if PLACEOUT == 'Yes':
     PLACEOUT = 0
 else:
@@ -77,13 +77,13 @@ elif CASEGOAL == 'No Goal Established':
 else:
     CASEGOAL = 0
 
-CHBEHPRB = st.selectbox("Has the child exhibited behavioral problems at home, in school, or elsewhere in the community? This includes running away.", ['Yes','No'])
+CHBEHPRB = st.radio("Has the child exhibited behavioral problems at home, in school, or elsewhere in the community? This includes running away.", ['Yes','No'])
 if CHBEHPRB == 'Yes':
     CHBEHPRB = 1
 else:
     CHBEHPRB = 0
 
-DAPARENT = st.selectbox("Is there evidence or history of drug abuse associated with the caretakers?", ['Yes','No'])
+DAPARENT = st.radio("Is there evidence or history of drug abuse associated with the caretakers?", ['Yes','No'])
 if DAPARENT == 'Yes':
     DAPARENT = 1
 else:
@@ -104,4 +104,4 @@ if st.button('Predict Risk'):
         st.warning('This case has a MODERATE risk of abuse.')
 
     else:
-        st.success(f'This case has a LOW risk of abuse. {risk}')
+        st.success('This case has a LOW risk of abuse.')
