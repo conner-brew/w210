@@ -94,10 +94,10 @@ else:
 
 features = [Housing, Relinqsh, Abandmnt, DAChild, NoCope, RU13, FCMntPay, CtkFamSt, DOB, InAtEnd]
 
-model = load('VAmodel.joblib') 
-test_data = pd.read_csv('VA_model_data.csv')
+model = load('streamlitva/VAmodel.joblib') 
+test_data = pd.read_csv('streamlitva/VA_model_data.csv')
 feat_names = ['Housing', 'Relinqsh', 'Abandmnt', 'DAChild', 'NoCope', 'RU13', 'FCMntPay', 'CtkFamSt', 'DOB', 'InAtEnd']
-with open('va_predstats.json') as json_file:
+with open('streamlitva/va_predstats.json') as json_file:
     predstats = json.load(json_file)
     
 if len(test_data) != 71:
