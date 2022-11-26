@@ -14,35 +14,26 @@ st.title('Abuse Risk Sandbox')
 st.subheader('In the state of Virginia, the following ten variables have been shown in modeling to be the most important features determining the likelihood of abuse in a foster case. Experiment with the features below, then press the "Predict Risk" button to see how it might affect risk!')
 st.info('NOTE: This tool is not meant to be used in decision-making for specific cases. This sandbox can only show the impact that a feature may present, absent any context. Risk of abuse is a complex issue, and is strongly affected by the unique attributes of the caretaker family, environment, and the case itself. ')
 
-racethn = st.selectbox('Child race/ethnicity', ['White','Asian','Black','American Indian','Mixed-Race','Other','Unknown'])
-if racethn == 'Asian':
-    AMIAKN = 1
-    WHITE = 0
-elif racethn == 'White':
-    WHITE = 1
-    WHITE = 0
-    AMIAKN = 0
-elif racethn == 'Mixed-Race':
-    WHITE = 1
-    WHITE = 0
-    AMIAKN = 0
+HOUSING = st.radio('Is the child living in housing that always meets standards of care?', ['Yes','No'])
+if HOUSING == 'Yes':
+    HOUSING = 0
 else:
-    WHITE = 0
-    AMIAKN = 0
+    HOUSING = 1
 
-AACHILD = st.radio('Is there any evidence that the child misuses alcohol?', ['Yes','No'])
-if AACHILD == 'Yes':
-    AACHILD = 1
+RELINQSH = st.radio("Have the child's birth parents formally relinquished parental rights?", ['Yes','No'])
+if RELINQSH == 'Yes':
+    RELINQSH = 1
 else:
-    AACHILD = 0
+    RELINQSH = 0
 
-PLACEOUT = st.radio('Is the child placed in the state of VA?', ['Yes','No'])
-if PLACEOUT == 'Yes':
-    PLACEOUT = 0
+ABANDMNT = st.radio("Is there evidence that the caretakers leave the child alone or with others frequently or for long durations of time?", ['Yes','No'])
+if ABANDMNT == 'Yes':
+    ABANDMNT = 1
 else:
-    PLACEOUT = 1
+    ABANDMNT = 0
 
-LATREMLOS = st.slider("How many days since the child's last removal (if no prior removals, how many days since the child entered the system)?", 0, 7560, 1000)
+DOB = st.slider("How old is the child?", 0, 18, 10, 1)
+DOB = (22 - DOB) * 100
 
 CTKFAMST = st.selectbox("What is the family structure of the caretaker family?", ['Married Couple','Unmarried Couple','Single Male','Single Female','Unknown'])	
 if CTKFAMST == 'Married Couple':
@@ -57,41 +48,6 @@ elif CTKFAMST == 'Unknown':
     CTKFAMST = 5
 else:
     CTKFAMST = 0
-
-REPDATYR = 2022
-
-CASEGOAL = st.selectbox("What is the most recently identified case goal?",['Reunification','Live with other relatives','Adoption','Long Term Foster Care','Emancipation','Guardianship','No Goal Established'])
-if CASEGOAL == 'Reunification':
-    CASEGOAL = 1
-elif CASEGOAL =='Live with other relatives':
-    CASEGOAL = 2
-elif CASEGOAL == 'Adoption':
-    CASEGOAL = 3
-elif CASEGOAL == 'Long Term Foster Care':
-    CASEGOAL = 4
-elif CASEGOAL == 'Emancipation':
-    CASEGOAL = 5
-elif CASEGOAL == 'Guardianship':
-    CASEGOAL = 6
-elif CASEGOAL == 'No Goal Established':
-    CASEGOAL = 7
-else:
-    CASEGOAL = 0
-
-CHBEHPRB = st.radio("Has the child exhibited behavioral problems at home, in school, or elsewhere in the community? This includes running away.", ['Yes','No'])
-if CHBEHPRB == 'Yes':
-    CHBEHPRB = 1
-else:
-    CHBEHPRB = 0
-
-DAPARENT = st.radio("Is there evidence or history of drug abuse associated with the caretakers?", ['Yes','No'])
-if DAPARENT == 'Yes':
-    DAPARENT = 1
-else:
-    DAPARENT = 0
-
-data = pd.DataFrame([[AACHILD, AMIAKN, PLACEOUT, LATREMLOS, CTKFAMST, REPDATYR, CASEGOAL, WHITE, CHBEHPRB, DAPARENT]],
- columns=['AACHILD', 'AMIAKN', 'PLACEOUT', 'LATREMLOS', 'CTKFAMST', 'REPDATYR', 'CASEGOAL', 'WHITE', 'CHBEHPRB', 'DAPARENT'])
 
 if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
