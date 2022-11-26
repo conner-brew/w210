@@ -103,11 +103,6 @@ with open('streamlitva/va_predstats.json') as json_file:
 if len(test_data) != 71:
     test_data = test_data.drop(columns = ['Unnamed: 0'])
 
-for i in range(len(features)):
-    test_data[feat_names[i]].values[:] = features[i]
-
-test_matrix = xgb.DMatrix(test_data)
-
 avg = predstats['pred_mean']
 std = predstats['pred_std']
 low_bound = avg - std
@@ -117,6 +112,9 @@ pos, neg = explain_model(model, test_data, feat_names)
 
 if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
+        for i in range(len(features)):
+            test_data[feat_names[i]].values[:] = features[i]
+        test_matrix = xgb.DMatrix(test_data)
         pred = model.predict(test_matrix)[0]
     
     if pred > high_bound:
