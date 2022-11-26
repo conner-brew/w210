@@ -108,7 +108,7 @@ std = predstats['pred_std']
 low_bound = avg - std
 high_bound = avg + std
     
-pos, neg = explain_model(model, test_data, feat_names)
+neg, pos = explain_model(model, test_data, feat_names)
 
 if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
@@ -127,9 +127,9 @@ if st.button('Predict Risk'):
         st.warning('This case has an AVERAGE risk of abuse.')
 
     if len(pos) > 0:
-        st.warning('These features raise the likelihood of abuse')
+        st.warning('These features lower the likelihood of abuse')
         st.write(pos)
 
     if len(neg) > 0:
-        st.success('These features lower the likelihood of abuse')
+        st.success('These features raise the likelihood of abuse')
         st.write(neg)
