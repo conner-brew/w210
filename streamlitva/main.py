@@ -126,10 +126,10 @@ if st.button('Predict Risk'):
     else:
         st.warning('This case has an AVERAGE risk of abuse.')
 
-    if len(pos) > 0:
-        st.warning('These features raise the likelihood of abuse')
-        st.write(pos)
+ #   if len(pos) > 0:
+ #       st.warning('These features raise the likelihood of abuse')
+ #       st.write(pos)
 
-    if len(neg) > 0:
-        st.success('These features lower the likelihood of abuse')
-        st.write(neg)
+ #   if len(neg) > 0:
+ #       st.success('These features lower the likelihood of abuse')
+ #       st.write(neg)
