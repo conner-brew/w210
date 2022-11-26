@@ -1,5 +1,7 @@
 streamlit
 pandas
 xgboost
+shap
+json
 scikit-learn==1.0.2
 joblib

@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import shap
+import json
 import xgboost as xgb
 from sklearn.ensemble import GradientBoostingClassifier
 from joblib import load
@@ -74,7 +76,7 @@ elif CtkFamSt == 'Unmarried Couple':
     CtkFamSt = 2
 elif CtkFamSt == 'Single Male':
     CtkFamSt = 3
-elif CTKFAMST == 'Single Male':
+elif CtkFamSt == 'Single Male':
     CtkFamSt = 4
 elif CtkFamSt == 'Unknown':
     CtkFamSt = 5
@@ -125,3 +127,11 @@ if st.button('Predict Risk'):
 
     else:
         st.warning('This case has an AVERAGE risk of abuse.')
+
+    if len(pos) > 0:
+        st.warning('These features raise the likelihood of abuse')
+        st.write(pos)
+
+    if len(neg) > 0:
+        st.success('These features lower the likelihood of abuse')
+        st.write(neg)
