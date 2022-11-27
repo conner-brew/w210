@@ -19,7 +19,7 @@ def explain_model(model, data, feats):
     pos = [i for i in shap_vals.keys() if shap_vals[i] > 0]
     neg = [i for i in shap_vals.keys() if shap_vals[i] < 0]
     
-    return pos, neg
+    return pos, neg, shap_vals
 
 st.title('Abuse Risk Sandbox')
 st.subheader('In the state of Virginia, the following ten variables have been shown in modeling to be the most important features determining the likelihood of abuse in a foster case. Experiment with the features below, then press the "Predict Risk" button to see how it might affect risk!')
@@ -110,6 +110,29 @@ high_bound = avg + std
     
 neg, pos = explain_model(model, test_data, feat_names)
 
+for l in neg, pos:
+    for i in range(len(l)):
+        if l[i] == 'Housing':
+                l[i] = 'Standard or Substandard Housing (Yes/No)'
+        elif l[i] == 'Relinqsh':
+                l[i] = 'Parents Relinquished Parental Rights (Yes/No)'
+        elif l[i] == 'Abandmnt':
+                l[i] = 'Evidence of Caretaker Abandonment (Yes/No)'
+        elif l[i] == 'DAChild':
+                l[i] = 'Evidence or History of Child Drug Abuse (Yes/No)'
+        elif l[i] == 'NoCope':
+                l[i] = 'Evidence or History of Caretaker Disability (Yes/No)'
+        elif l[i] == 'RU13':
+                l[i] = 'Population of the Residence County'
+        elif l[i] == 'FCMntPay':
+                l[i] = 'Value of Monthly Foster Care Payments to Caretakers'
+        elif l[i] == 'CtkFamSt':
+                l[i] = 'Caretaker Family Structure'
+        elif l[i] == 'DOB':
+                l[i] = 'Child Age'
+        elif l[i] == 'InAtEnd':
+                l[i] = 'Child in Congregate Care or Caretaker Family'
+
 if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
         for i in range(len(features)):
@@ -126,10 +149,10 @@ if st.button('Predict Risk'):
     else:
         st.warning('This case has an AVERAGE risk of abuse.')
 
- #   if len(pos) > 0:
- #       st.warning('These features raise the likelihood of abuse')
- #       st.write(pos)
+    if len(pos) > 0:
+        st.warning('Your submission for these features RAISE likelihood of abuse')
+        st.write(pos)
 
- #   if len(neg) > 0:
- #       st.success('These features lower the likelihood of abuse')
- #       st.write(neg)
+    if len(neg) > 0:
+        st.info('Your submission for these features LOWER likelihood of abuse')
+        st.write(neg)
