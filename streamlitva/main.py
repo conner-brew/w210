@@ -33,7 +33,7 @@ st.title('Abuse Risk Sandbox')
 st.info('NOTE: This tool is not meant to be used in decision-making for specific cases. This sandbox can only show the impact that a feature may present, absent any context. Risk of abuse is a complex issue, and is strongly affected by the unique attributes of the caretaker family, environment, and the case itself. ')
 
 if state == 'Virginia':
-    st.subheader('California')
+    st.subheader('Virginia')
     st.markdown('In the state of Virginia, the following ten variables have been shown in modeling to be the most important features determining the likelihood of abuse in a foster case. Experiment with the features below, then press the "Predict Risk" button to see how it might affect risk!')
 
     Housing = st.radio('Is the child living in housing that always meets standards of care?', ['Yes','No'])
