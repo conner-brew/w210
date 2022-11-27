@@ -152,9 +152,11 @@ if st.button('Predict Risk'):
         st.warning('This case has an AVERAGE risk of abuse.')
 
     if len(pos) > 0:
-        st.warning('Your submission for these features RAISE likelihood of abuse')
-        st.write(pos)
+        st.warning('Your submission for these features RAISE likelihood of abuse:')
+        for i in pos:
+            st.markdown("- " + i)
 
     if len(neg) > 0:
-        st.info('Your submission for these features LOWER likelihood of abuse')
-        st.write(neg)
+        st.info('Your submission for these features LOWER likelihood of abuse:')
+        for i in neg:
+            st.markdown("- " + i)
