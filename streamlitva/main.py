@@ -8,7 +8,7 @@ from joblib import load
 
 def explain_model(model, data, feats):
     explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(data, approximate=True)
+    shap_values = explainer.shap_values(data)
 
     indices=[]
     for feat in feats:
