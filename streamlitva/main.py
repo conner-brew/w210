@@ -23,7 +23,7 @@ def explain_model(model, data, feats):
 
 sb = st.sidebar # defining the sidebar
 
-st.subheader('Our sandbox is currently trained on foster care data from Virginia and California. Please select your state in the sidebar to view the appropriate information.')
+sb.subheader('Our sandbox is currently trained on foster care data from Virginia and California. Please select your state in the sidebar to view the appropriate information.')
 state_names = ["Virginia", "California"]
 state = sb.radio("", state_names, index=0)
 
@@ -163,7 +163,7 @@ if state == 'Virginia':
             st.warning('This case has an AVERAGE risk of abuse.')
 
         if len(pos) > 0:
-            st.warning('Your submission for these features RAISE likelihood of abuse:')
+            st.error('Your submission for these features RAISE likelihood of abuse:')
             for i in pos:
                 st.markdown("- " + i)
 
@@ -285,7 +285,7 @@ if state == 'California':
              st.warning('This case has an AVERAGE risk of abuse.')
 
          if len(pos) > 0:
-             st.warning('Your submission for these features RAISE likelihood of abuse:')
+             st.error('Your submission for these features RAISE likelihood of abuse:')
              for i in pos:
                  st.markdown("- " + i)
 
