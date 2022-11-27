@@ -19,7 +19,7 @@ def explain_model(model, data, feats):
     pos = [i for i in shap_vals.keys() if shap_vals[i] > 0]
     neg = [i for i in shap_vals.keys() if shap_vals[i] < 0]
     
-    return pos, neg
+    return pos, neg, shap_vals
 
 st.title('Abuse Risk Sandbox')
 st.subheader('In the state of Virginia, the following ten variables have been shown in modeling to be the most important features determining the likelihood of abuse in a foster case. Experiment with the features below, then press the "Predict Risk" button to see how it might affect risk!')
@@ -113,7 +113,7 @@ for i in range(len(features)):
 
 test_matrix = xgb.DMatrix(test_data)
 
-pos, neg = explain_model(model, test_data, feat_names)
+pos, neg, shap_vals = explain_model(model, test_data, feat_names)
 
 for l in pos, neg:
     for i in range(len(l)):
@@ -160,3 +160,5 @@ if st.button('Predict Risk'):
         st.info('Your submission for these features LOWER likelihood of abuse:')
         for i in neg:
             st.markdown("- " + i)
+
+    st.write(shap_vals)
