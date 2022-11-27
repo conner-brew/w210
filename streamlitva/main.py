@@ -160,5 +160,3 @@ if st.button('Predict Risk'):
         st.info('Your submission for these features LOWER likelihood of abuse:')
         for i in neg:
             st.markdown("- " + i)
-
-    st.write(shap_vals)
