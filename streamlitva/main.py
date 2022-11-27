@@ -16,8 +16,8 @@ def explain_model(model, data, feats):
             if data.columns[i] == feat:
                 indices.append(i)
     shap_vals = {data.columns[i] : shap_values[0][i] for i in indices}
-    pos = [i for i in shap_vals.keys() if shap_vals[i] > 0]
-    neg = [i for i in shap_vals.keys() if shap_vals[i] < 0]
+    pos = [i for i in shap_vals.keys() if shap_vals[i] > 0.001]
+    neg = [i for i in shap_vals.keys() if shap_vals[i] < -0.001]
     
     return pos, neg, shap_vals
 
