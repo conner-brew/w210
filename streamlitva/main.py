@@ -19,7 +19,7 @@ def explain_model(model, data, feats):
     pos = [i for i in shap_vals.keys() if shap_vals[i] > 0]
     neg = [i for i in shap_vals.keys() if shap_vals[i] < 0]
     
-    return pos, neg, shap_vals
+    return pos, neg
 
 st.title('Abuse Risk Sandbox')
 st.subheader('In the state of Virginia, the following ten variables have been shown in modeling to be the most important features determining the likelihood of abuse in a foster case. Experiment with the features below, then press the "Predict Risk" button to see how it might affect risk!')
@@ -107,10 +107,15 @@ avg = predstats['pred_mean']
 std = predstats['pred_std']
 low_bound = avg - std
 high_bound = avg + std
-    
-neg, pos = explain_model(model, test_data, feat_names)
 
-for l in neg, pos:
+for i in range(len(features)):
+    test_data[feat_names[i]].values[:] = features[i]
+
+test_matrix = xgb.DMatrix(test_data)
+
+pos, neg = explain_model(model, test_data, feat_names)
+
+for l in pos, neg:
     for i in range(len(l)):
         if l[i] == 'Housing':
                 l[i] = 'Standard or Substandard Housing (Yes/No)'
@@ -135,9 +140,6 @@ for l in neg, pos:
 
 if st.button('Predict Risk'):
     with st.spinner("Running our model now...."):
-        for i in range(len(features)):
-            test_data[feat_names[i]].values[:] = features[i]
-        test_matrix = xgb.DMatrix(test_data)
         pred = model.predict(test_matrix)[0]
     
     if pred > high_bound:
