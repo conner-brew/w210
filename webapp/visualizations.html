@@ -50,15 +50,13 @@
             var divElement = document.getElementById('viz1670191680912');
             var vizElement = divElement.getElementsByTagName('object')[0];
             if (divElement.offsetWidth > 800) {
-                vizElement.style.minWidth = '420px';
-                vizElement.style.maxWidth = '100%';
-                vizElement.style.minHeight = '610px';
-                vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
+                vizElement.style.width = '100%';
+                vizElement.style.minHeight = '750px';
+                vizElement.style.maxHeight = (divElement.offsetWidth * 1.77) + 'px';
             } else if (divElement.offsetWidth > 500) {
-                vizElement.style.minWidth = '1366px';
-                vizElement.style.maxWidth = '100%';
-                vizElement.style.minHeight = '818px';
-                vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
+                vizElement.style.width = '100%';
+                vizElement.style.minHeight = '750px';
+                vizElement.style.maxHeight = (divElement.offsetWidth * 1.77) + 'px';
             } else {
                 vizElement.style.width = '100%';
                 vizElement.style.minHeight = '750px';
