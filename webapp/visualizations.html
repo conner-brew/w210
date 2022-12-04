@@ -50,13 +50,11 @@
             var divElement = document.getElementById('viz1670189203599');
             var vizElement = divElement.getElementsByTagName('object')[0];
             if (divElement.offsetWidth > 800) {
-                vizElement.style.minWidth = '420px';
-                vizElement.style.maxWidth = '100%';
+                vizElement.style.Width = '100%';
                 vizElement.style.minHeight = '1230px';
                 vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
             } else if (divElement.offsetWidth > 500) {
-                vizElement.style.minWidth = '1100px';
-                vizElement.style.maxWidth = '100%';
+                vizElement.style.Width = '100%';
                 vizElement.style.minHeight = '1150px';
                 vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
             } else {
